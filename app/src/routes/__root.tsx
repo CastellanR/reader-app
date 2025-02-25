@@ -5,10 +5,11 @@ import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 export const Route = createRootRoute({
   component: () => (
     <>
-      <hr />
-      <Outlet />
+      <div className="flex flex-col grow h-screen overflow-hidden">
+        <Outlet />
+      </div>
       {/* <TanStackRouterDevtools /> */}
-      <div className="p-3 flex justify-around border-t border-gray-300 absolute bottom-0 left-0 w-full">
+      <nav className="p-3 flex justify-around border-t border-gray-300 fixed bottom-0 left-0 w-full z-999 bg-white">
         <Link to="/">
           {({ isActive }) => {
             return (
@@ -29,7 +30,7 @@ export const Route = createRootRoute({
             );
           }}
         </Link>
-      </div>
+      </nav>
     </>
   ),
 });

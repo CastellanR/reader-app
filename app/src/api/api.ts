@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:8080/v1";
+const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 export const getData = async (path: string) => {
   const url = baseURL + path;

@@ -29,6 +29,7 @@
     "@tanstack/eslint-plugin-query": "^5.66.1",
     "@tanstack/router-devtools": "^1.106.0",
     "@tanstack/router-plugin": "^1.106.0",
+    "@types/node": "^22.13.5",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react-swc": "^3.5.0",
@@ -40,6 +41,7 @@
     "sass-embedded": "^1.85.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.22.0",
-    "vite": "^6.1.0"
+    "vite": "^6.1.0",
+    "vite-tsconfig-paths": "^5.1.4"
   }
 }
