@@ -5,7 +5,11 @@ export const sortValues = [
 
 export const genreValues = [
   { label: "Arts & Photography", filterQuery: "subject:art", key: "art" },
-  { label: "Bestsellers", filterQuery: "bestseller", key: "bestseller" },
+  {
+    label: "Bestsellers",
+    filterQuery: "subject:bestseller",
+    key: "bestseller",
+  },
   {
     label: "Biographies & Memoirs",
     filterQuery: "subject:biography",

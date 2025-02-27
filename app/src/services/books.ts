@@ -2,20 +2,15 @@ import { getData } from "@/api/api";
 import { Book, FilterValues } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetBooks = (filterValues: FilterValues) =>
+export const useGetBooks = ({ sortBy, genre }: FilterValues) =>
   useQuery<Book[]>({
-    queryKey: ["books"],
+    queryKey: ["books", sortBy, genre],
     queryFn: async () => {
       try {
-        const url = `/books?sortBy=${filterValues.sortBy}&genre=${filterValues.genre}`;
+        const url = `/books?sortBy=${sortBy}&genre=${genre}`;
         const data = await getData(url);
 
-        // Filter books that have a cover image
-        const booksWithCovers = data.items.filter(
-          (book: Book) => book.volumeInfo.imageLinks?.thumbnail
-        );
-
-        return booksWithCovers;
+        return data;
       } catch (error) {
         console.error(error);
       }

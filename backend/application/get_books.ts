@@ -16,7 +16,12 @@ export const getBooks = async (
       `/volumes?q=${cmd.genre}&maxResults=40&orderBy=${cmd.sortBy}`
     );
 
-    return books;
+    // Filter books that have a cover image
+    const booksWithCovers = books.items.filter(
+      (book: Book) => book.volumeInfo.imageLinks?.thumbnail
+    );
+
+    return booksWithCovers;
   } catch (error) {
     deps.logger.info("Error trying to get books", error);
   }
