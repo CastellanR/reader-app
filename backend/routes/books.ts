@@ -6,7 +6,7 @@ const router = express.Router();
 
 const booksRoutes = (deps: Dependencies) => {
   router.get("/", async (req: Request, res: Response) => {
-    const cmd: GetBooksCommand = req.body;
+    const cmd: GetBooksCommand = req.query;
     try {
       const books = await getBooks(cmd, deps);
 

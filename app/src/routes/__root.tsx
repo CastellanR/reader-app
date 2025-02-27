@@ -1,14 +1,13 @@
 import { Books, Compass } from "@phosphor-icons/react";
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
-// import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 
 export const Route = createRootRoute({
   component: () => (
-    <>
+    // TODO: Replace this value with theming logic
+    <div className="light">
       <div className="flex flex-col grow h-screen overflow-hidden">
         <Outlet />
       </div>
-      {/* <TanStackRouterDevtools /> */}
       <nav className="p-3 flex justify-around border-t border-gray-300 fixed bottom-0 left-0 w-full z-999 bg-white">
         <Link to="/">
           {({ isActive }) => {
@@ -31,6 +30,6 @@ export const Route = createRootRoute({
           }}
         </Link>
       </nav>
-    </>
+    </div>
   ),
 });

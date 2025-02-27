@@ -33,3 +33,8 @@ export type Book = {
     canonicalVolumeLink: string;
   };
 };
+
+export type FilterValues = {
+  sortBy: string;
+  genre: string;
+};

@@ -3,8 +3,8 @@ import { Book } from "../domain/book";
 import { getData } from "../libs/http";
 
 export type GetBooksCommand = {
-  name: string;
-  category: string;
+  sortBy: string;
+  genre: string;
 };
 
 export const getBooks = async (
@@ -13,7 +13,7 @@ export const getBooks = async (
 ): Promise<Book[]> => {
   try {
     const books = await getData(
-      "/volumes?q=bestseller&maxResults=40&orderBy=relevance"
+      `/volumes?q=${cmd.genre}&maxResults=40&orderBy=${cmd.sortBy}`
     );
 
     return books;

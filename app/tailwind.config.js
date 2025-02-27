@@ -11,5 +11,10 @@ module.exports = {
     extend: {},
   },
   darkMode: "class",
-  plugins: [heroui(), tailwindcss()],
+  plugins: [
+    heroui({
+      defaultTheme: "light",
+    }),
+    tailwindcss(),
+  ],
 };
