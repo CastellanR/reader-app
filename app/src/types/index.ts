@@ -38,3 +38,8 @@ export type FilterValues = {
   sortBy: string;
   genre: string;
 };
+
+export type SearchResults = {
+  titleISBNResults: Book[];
+  authorResults: Book[];
+};

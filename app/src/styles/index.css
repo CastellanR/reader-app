@@ -20,3 +20,7 @@ body {
 [data-slot="popover"] [data-slot="base"] {
   background-color: theme("colors.white");
 }
+
+[data-slot="wrapper"] {
+  background-color: theme("colors.white");
+}
