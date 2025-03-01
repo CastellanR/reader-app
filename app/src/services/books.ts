@@ -16,3 +16,22 @@ export const useGetBooks = ({ sortBy, genre }: FilterValues) =>
       }
     },
   });
+
+export const useGetBookByID = (bookID: string) =>
+  useQuery<Book>({
+    queryKey: ["book"],
+    queryFn: async () => {
+      try {
+        const url = `/books/${bookID}`;
+        const data = await getData(url);
+
+        if (!data) {
+          return {};
+        }
+
+        return data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  });

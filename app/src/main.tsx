@@ -23,6 +23,7 @@ createRoot(document.getElementById("root")!).render(
       <StrictMode>
         <FilterValuesProvider>
           <RouterProvider router={router} />
+          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         </FilterValuesProvider>
       </StrictMode>
     </HeroUIProvider>
