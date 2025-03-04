@@ -7,9 +7,6 @@ type RatingsProps = {
 };
 
 export const Ratings: FC<RatingsProps> = ({ ratingsCount, averageRating }) => {
-  console.log("🚀 ~ averageRating:", averageRating);
-  console.log("🚀 ~ ratingsCount:", ratingsCount);
-
   if (!ratingsCount || !averageRating) {
     return <p>No ratings</p>;
   }

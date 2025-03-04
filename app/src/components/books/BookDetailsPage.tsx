@@ -22,7 +22,7 @@ export const BookDetailsPage: FC = () => {
 
   return (
     !isLoading && (
-      <div className="flex flex-col items-center w-screen gap-8 h-screen overflow-y-scroll no-scrollbar">
+      <div className="flex flex-col items-center w-screen gap-8 pb-14">
         <div className="flex flex-row justify-center items-center bg-gray-200 p-8 w-screen">
           <img
             className="w-64 h-96"

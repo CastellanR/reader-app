@@ -15,6 +15,7 @@ export const useGetBooks = ({ sortBy, genre }: FilterValues) =>
         console.error(error);
       }
     },
+    gcTime: 60 * 5 * 1000,
   });
 
 export const useGetBookByID = (bookID: string) =>

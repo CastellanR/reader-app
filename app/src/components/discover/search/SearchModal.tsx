@@ -28,7 +28,7 @@ export const SearchModal: React.FC = () => {
 
   return (
     <ModalBody>
-      <div className="p-8 h-screen flex flex-col gap-8">
+      <div className="p-8 h-dvh flex flex-col gap-8">
         <Input
           size="md"
           variant={"bordered"}
