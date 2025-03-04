@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   font-size: 16px;
@@ -14,13 +16,4 @@ body {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
-}
-
-/* TODO: Change this when theming is implemented */
-[data-slot="popover"] [data-slot="base"] {
-  background-color: theme("colors.white");
-}
-
-[data-slot="wrapper"] {
-  background-color: theme("colors.white");
 }

@@ -1,6 +1,6 @@
 import { heroui } from "@heroui/theme";
-import tailwindcss from "@tailwindcss/vite";
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./index.html",
@@ -11,10 +11,5 @@ module.exports = {
     extend: {},
   },
   darkMode: "class",
-  plugins: [
-    heroui({
-      defaultTheme: "light",
-    }),
-    tailwindcss(),
-  ],
+  plugins: [heroui()],
 };
