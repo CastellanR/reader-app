@@ -27,7 +27,7 @@ export const DiscoverPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-7 h-full overflow-y-scroll no-scrollbar p-0">
+    <div className="flex flex-col gap-7 no-scrollbar p-0">
       <div className="flex flex-row justify-start items-center gap-16 p-6 py-0">
         <Select
           className="max-w-sm p-0"
@@ -68,7 +68,7 @@ export const DiscoverPage: React.FC = () => {
           ))}
         </Select>
       </div>
-      {!isLoading && <BooksGrid books={data} />}
+      {!isLoading && <BooksGrid booksData={data} />}
     </div>
   );
 };

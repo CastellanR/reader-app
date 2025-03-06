@@ -3,6 +3,11 @@ type BookIdentifier = {
   identifier: string;
 };
 
+export type GetBooksResponse = {
+  totalItems: number;
+  books: Book[];
+};
+
 export type Book = {
   kind: string;
   id: string;

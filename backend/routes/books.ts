@@ -1,6 +1,10 @@
 import express, { Request, Response } from "express";
 import { getBookByID, GetBookByIDCommand } from "../application/get_book_by_id";
-import { getBooks, GetBooksCommand } from "../application/get_books";
+import {
+  getBooks,
+  GetBooksCommand,
+  GetBooksResponse,
+} from "../application/get_books";
 import { Dependencies } from "../dependencies";
 
 const router = express.Router();
@@ -24,7 +28,7 @@ const booksRoutes = (deps: Dependencies) => {
   router.get("/", async (req: Request, res: Response) => {
     const cmd: GetBooksCommand = req.query;
     try {
-      const books = await getBooks(cmd, deps);
+      const books: GetBooksResponse = await getBooks(cmd, deps);
 
       res.json(books);
     } catch (error) {

@@ -1,9 +1,9 @@
 import { getData } from "@/api/api";
-import { Book, FilterValues } from "@/types";
+import { Book, FilterValues, GetBooksResponse } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetBooks = ({ sortBy, genre }: FilterValues) =>
-  useQuery<Book[]>({
+  useQuery<GetBooksResponse>({
     queryKey: ["books", sortBy, genre],
     queryFn: async () => {
       try {

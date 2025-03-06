@@ -7,10 +7,15 @@ export type GetBooksCommand = {
   genre: string;
 };
 
+export type GetBooksResponse = {
+  totalItems: number;
+  books: Book[];
+};
+
 export const getBooks = async (
   cmd: GetBooksCommand,
   deps: Dependencies
-): Promise<Book[]> => {
+): Promise<GetBooksResponse> => {
   try {
     const books = await getData(
       `/volumes?q=${cmd.genre}&maxResults=40&orderBy=${cmd.sortBy}`
@@ -21,7 +26,10 @@ export const getBooks = async (
       (book: Book) => book.volumeInfo.imageLinks?.thumbnail
     );
 
-    return booksWithCovers;
+    return {
+      totalItems: books.totalItems,
+      books: booksWithCovers,
+    };
   } catch (error) {
     deps.logger.info("Error trying to get books", error);
   }

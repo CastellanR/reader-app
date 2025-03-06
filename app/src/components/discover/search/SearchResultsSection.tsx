@@ -1,5 +1,5 @@
+import { BookSearchDetails } from "@/components/ui/BookSearchDetails";
 import { Book } from "@/types";
-import { BookSearchDetails } from "@/ui/BookSearchDetails";
 import { Link } from "@tanstack/react-router";
 import { FC } from "react";
 

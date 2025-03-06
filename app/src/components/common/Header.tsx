@@ -28,7 +28,11 @@ export const Header: FC = () => {
   return (
     <header className="flex flex-row justify-start items-center gap-12 p-6">
       {showBackArrow ? (
-        <ArrowLeft size={24} onClick={handleClickOnBackArrow} />
+        <ArrowLeft
+          size={24}
+          onClick={handleClickOnBackArrow}
+          className="cursor-pointer"
+        />
       ) : (
         <h1 className="font-bold">Reader App</h1>
       )}

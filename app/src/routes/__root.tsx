@@ -4,9 +4,9 @@ import { createRootRoute, Outlet } from "@tanstack/react-router";
 
 export const Route = createRootRoute({
   component: () => (
-    <div className="overflow-hidden">
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <div className="flex flex-col pb-20 no-scrollbar ">
+      <div className="flex flex-col flex-grow pb-20 no-scrollbar">
         <Outlet />
       </div>
       <Footer />
