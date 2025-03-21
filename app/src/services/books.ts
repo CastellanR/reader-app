@@ -1,13 +1,13 @@
 import { getData } from "@/api/api";
-import { Book, FilterValues, GetBooksResponse } from "@/types";
-import { useQuery } from "@tanstack/react-query";
+import { Book, GetBooksDTO } from "@/types";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
-export const useGetBooks = ({ sortBy, genre }: FilterValues) =>
-  useQuery<GetBooksResponse>({
+export const useGetBooks = ({ sortBy, genre }: GetBooksDTO) =>
+  useInfiniteQuery<Book[]>({
     queryKey: ["books", sortBy, genre],
-    queryFn: async () => {
+    queryFn: async ({ pageParam = 0 }) => {
       try {
-        const url = `/books?sortBy=${sortBy}&genre=${genre}`;
+        const url = `/books?sortBy=${sortBy}&genre=${genre}&startIndex=${pageParam}`;
         const data = await getData(url);
 
         return data;
@@ -15,6 +15,12 @@ export const useGetBooks = ({ sortBy, genre }: FilterValues) =>
         console.error(error);
       }
     },
+    getNextPageParam: (lastPage, allPages) =>
+      lastPage.length ? allPages.length : undefined,
+    refetchOnWindowFocus: false,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    placeholderData: (previousData, _previousQuery) => previousData,
+    initialPageParam: 0,
     gcTime: 60 * 5 * 1000,
   });
 

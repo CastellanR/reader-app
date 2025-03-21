@@ -5,20 +5,18 @@ import { getData } from "../libs/http";
 export type GetBooksCommand = {
   sortBy: string;
   genre: string;
-};
-
-export type GetBooksResponse = {
-  totalItems: number;
-  books: Book[];
+  startIndex: number;
 };
 
 export const getBooks = async (
   cmd: GetBooksCommand,
   deps: Dependencies
-): Promise<GetBooksResponse> => {
+): Promise<Book[]> => {
   try {
     const books = await getData(
-      `/volumes?q=${cmd.genre}&maxResults=40&orderBy=${cmd.sortBy}`
+      `/volumes?q=${cmd.genre}&maxResults=24&orderBy=${cmd.sortBy}&startIndex=${
+        cmd.startIndex * 24
+      }`
     );
 
     // Filter books that have a cover image
@@ -26,10 +24,7 @@ export const getBooks = async (
       (book: Book) => book.volumeInfo.imageLinks?.thumbnail
     );
 
-    return {
-      totalItems: books.totalItems,
-      books: booksWithCovers,
-    };
+    return booksWithCovers;
   } catch (error) {
     deps.logger.info("Error trying to get books", error);
   }

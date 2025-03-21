@@ -1,18 +1,31 @@
 import { useFilterValues } from "@/hooks/useFilterValues";
 import { useGetBooks } from "@/services/books";
+import { Book } from "@/types";
 import { genreValues, sortValues } from "@/utils/constants";
 import { Select, SelectItem } from "@heroui/select";
 import { CaretDown } from "@phosphor-icons/react";
+import { useRef } from "react";
 import BooksGrid from "./BooksGrid";
 
 export const DiscoverPage: React.FC = () => {
   const { filterValues, setFilterValues } = useFilterValues();
 
-  const { data, isLoading, error } = useGetBooks(filterValues);
+  const hasFetched = useRef(false);
+
+  const {
+    data,
+    isLoading,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useGetBooks(filterValues);
 
   if (error) {
     console.error("Something happened", error);
   }
+
+  const books: Book[] = data?.pages?.flatMap((page) => page) ?? [];
 
   const handleGenreSelectChange = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -24,6 +37,18 @@ export const DiscoverPage: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setFilterValues({ ...filterValues, sortBy: event.target.value });
+  };
+
+  const handleFetchNextPage = () => {
+    if (hasFetched.current) return;
+
+    if (hasNextPage && !isFetchingNextPage) {
+      hasFetched.current = true;
+
+      fetchNextPage().then(() => {
+        hasFetched.current = false;
+      });
+    }
   };
 
   return (
@@ -68,7 +93,9 @@ export const DiscoverPage: React.FC = () => {
           ))}
         </Select>
       </div>
-      {!isLoading && <BooksGrid booksData={data} />}
+      {!isLoading && (
+        <BooksGrid books={books} fetchNextPage={handleFetchNextPage} />
+      )}
     </div>
   );
 };

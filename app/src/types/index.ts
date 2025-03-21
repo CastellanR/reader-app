@@ -3,11 +3,6 @@ type BookIdentifier = {
   identifier: string;
 };
 
-export type GetBooksResponse = {
-  totalItems: number;
-  books: Book[];
-};
-
 export type Book = {
   kind: string;
   id: string;
@@ -39,9 +34,10 @@ export type Book = {
   };
 };
 
-export type FilterValues = {
+export type GetBooksDTO = {
   sortBy: string;
   genre: string;
+  startIndex: number;
 };
 
 export type SearchResults = {
