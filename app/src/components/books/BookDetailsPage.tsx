@@ -3,8 +3,8 @@ import { Button } from "@heroui/button";
 import { Divider } from "@heroui/divider";
 import { Plus } from "@phosphor-icons/react";
 import { useParams } from "@tanstack/react-router";
+import DOMPurify from "dompurify";
 import { FC } from "react";
-import sanitizeHtml from "sanitize-html";
 import { Ratings } from "./Ratings";
 
 export const BookDetailsPage: FC = () => {
@@ -50,9 +50,7 @@ export const BookDetailsPage: FC = () => {
           </Button>
         </div>
         <div className="w-4/5 flex flex-row justify-center items-center">
-          <p>
-            {sanitizeHtml(data.volumeInfo.description, { allowedTags: [] })}
-          </p>
+          <p>{DOMPurify.sanitize(data.volumeInfo.description)}</p>
         </div>
       </div>
     )
