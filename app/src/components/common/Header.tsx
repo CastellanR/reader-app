@@ -23,7 +23,15 @@ export const Header: FC = () => {
     onOpen();
   };
 
-  const handleClickOnBackArrow = () => router.history.back();
+  const handleClickOnBackArrow = () => {
+    if (document.startViewTransition) {
+      document.startViewTransition(() => {
+        router.history.back();
+      });
+    } else {
+      router.history.back();
+    }
+  };
 
   return (
     <header className="flex flex-row justify-start items-center gap-12 p-6">

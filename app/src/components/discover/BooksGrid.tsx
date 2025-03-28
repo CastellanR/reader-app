@@ -66,6 +66,7 @@ const BooksGrid: React.FC<BooksGridProps> = ({
             key={book.id + i}
             to="/books/$bookID"
             params={{ bookID: book.id }}
+            viewTransition
           >
             <BookCard book={book} />
           </Link>

@@ -20,6 +20,14 @@ export const BookDetailsPage: FC = () => {
     return <p>Book not found!</p>;
   }
 
+  const sanitizeAndRemoveHtml = (dirtyHtml: string) => {
+    const sanitizedHtml = DOMPurify.sanitize(dirtyHtml);
+
+    const tempElement = document.createElement("div");
+    tempElement.innerHTML = sanitizedHtml;
+    return tempElement.textContent || tempElement.innerText || "";
+  };
+
   return (
     !isLoading && (
       <div className="flex flex-col items-center w-screen gap-8 pb-14">
@@ -50,7 +58,7 @@ export const BookDetailsPage: FC = () => {
           </Button>
         </div>
         <div className="w-4/5 flex flex-row justify-center items-center">
-          <p>{DOMPurify.sanitize(data.volumeInfo.description)}</p>
+          <p>{sanitizeAndRemoveHtml(data.volumeInfo.description)}</p>
         </div>
       </div>
     )
